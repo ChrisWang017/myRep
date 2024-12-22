@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打散功能</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('296879.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+        }
+
+        pre {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow-x: auto;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            img {
+                width: 100%;
+            }
+        }
+
+        .link-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .link-button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function ran_f() {
+            let output = document.getElementById("output");
+            output.textContent = "";
+
+            // 建立數字陣列
+            let a = [];
+            for (let i = 1; i <= 10; i++) {
+                a[i - 1] = i;
+            }
+
+            // 隨機打散數字
+            for (let i = 9; i > 0; i--) {
+                let r = Math.floor(Math.random() * (i + 1));
+                let c = a[i];
+                a[i] = a[r];
+                a[r] = c;
+            }
+
+            // 顯示打散後的結果
+            output.textContent += "打散後:\n";
+            for (let i = 0; i < 10; i++) {
+                output.textContent += `位置: ${i}, ${a[i]}\n`;
+            }
+
+            // 排序打散後的結果
+            let sortedArray = [...a].sort((x, y) => x - y);
+
+            // 顯示排序後的結果
+            output.textContent += "\n排序後:\n";
+            for (let i = 0; i < sortedArray.length; i++) {
+                output.textContent += `位置: ${i}, ${sortedArray[i]}\n`;
+            }
+
+            // 電腦報排機制: 隨機選取 1~10 的五個數字
+            let reportNumbers = [];
+            while (reportNumbers.length < 5) {
+                let randomNum = Math.floor(Math.random() * 10) + 1;
+                if (!reportNumbers.includes(randomNum)) {
+                    reportNumbers.push(randomNum);
+                }
+            }
+
+            // 排序電腦報排數字
+            reportNumbers.sort((x, y) => x - y);
+
+            // 顯示電腦報排結果
+            output.textContent += "\n電腦報排:\n";
+            for (let i = 0; i < reportNumbers.length; i++) {
+                output.textContent += `位置: ${i}, ${reportNumbers[i]}\n`;
+            }
+
+            // 比較最大值
+            let max = a[0];
+            let compareResults = "\n比對過程:\n";
+            for (let i = 1; i < a.length; i++) {
+                compareResults += `比對 ${max} 與 ${a[i]}，較大者為 ${Math.max(max, a[i])}\n`;
+                if (a[i] > max) {
+                    max = a[i];
+                }
+            }
+
+            // 顯示比對結果和最大值
+            output.textContent += compareResults;
+            output.textContent += `\n最大值為: ${max}\n`;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>亂數打散功能</h1>
+    <button onclick="ran_f()">打散、排序並顯示電腦報排</button>
+    <a href="index.htm" class="link-button">前往首頁</a>
+    <div class="container">
+        <img src="Py_ran1.jpg" alt="描述圖片的內容" />
+        <img src="Py_ran2.jpg" alt="描述圖片的內容" />
+    </div>
+    <pre id="output"></pre>
+</body>
+
+</html>

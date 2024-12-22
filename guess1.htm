@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>終極密碼遊戲</title>
+    <style>
+        /* 基本樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .game-container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            transition: transform 0.3s;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-5px); /* 按鈕浮起效果 */
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 600px) {
+            .game-container {
+                padding: 15px;
+                width: 95%;
+            }
+
+            input[type="number"] {
+                width: 90%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* 返回首頁按鈕樣式 */
+        .home-link {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>終極密碼遊戲</h1>
+        <p>我會選擇一個 1 到 100 之間的數字，你需要猜出它來。</p>
+        <div class="game-info">
+            <p>猜測範圍：<span id="range">1 到 100</span></p>
+            <p>請輸入你的猜測：</p>
+            <input type="number" id="guessInput" min="1" max="100">
+            <button onclick="checkGuess()">猜測</button>
+            <button onclick="resetGame()">重置遊戲</button>
+        </div>
+        <p id="message"></p>
+        <p id="attempts">你已經猜了 0 次。</p>
+        <!-- 返回首頁連結 -->
+        <a href="index.htm" class="home-link">返回首頁</a>
+    </div>
+
+    <script>
+        let numberToGuess, low, high, attempts;
+
+        // 啟動遊戲
+        function startGame() {
+            numberToGuess = Math.floor(Math.random() * 100) + 1; // 隨機數字 1 到 100
+            low = 1;
+            high = 100;
+            attempts = 0;
+
+            // 初始化顯示內容
+            document.getElementById("message").textContent = '';
+            document.getElementById("attempts").textContent = `你已經猜了 0 次。`;
+            document.getElementById("range").textContent = `${low} 到 ${high}`;
+            document.getElementById("guessInput").value = '';
+        }
+
+        // 開始遊戲
+        startGame();
+
+        // 檢查猜測
+        function checkGuess() {
+            let guess = parseInt(document.getElementById("guessInput").value);
+            let message = document.getElementById("message");
+            let attemptsDisplay = document.getElementById("attempts");
+            let rangeDisplay = document.getElementById("range");
+
+            // 檢查輸入是否為有效數字
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.textContent = "請輸入有效的數字，範圍是 1 到 100！";
+                return;
+            }
+
+            attempts++;
+
+            if (guess < numberToGuess) {
+                low = guess + 1;
+                message.textContent = `錯誤！數字大於 ${guess}，請再試一次。`;
+            } else if (guess > numberToGuess) {
+                high = guess - 1;
+                message.textContent = `錯誤！數字小於 ${guess}，請再試一次。`;
+            } else {
+                message.textContent = `恭喜！你猜對了！正確答案是 ${numberToGuess}。`;
+            }
+
+            // 更新範圍和猜測次數顯示
+            rangeDisplay.textContent = `${low} 到 ${high}`;
+            attemptsDisplay.textContent = `你已經猜了 ${attempts} 次。`;
+        }
+
+        // 重置遊戲
+        function resetGame() {
+            startGame();  // 重新開始遊戲
+        }
+
+        // 綁定Enter鍵按下事件
+        document.getElementById("guessInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                checkGuess();  // 按下Enter鍵時觸發猜測
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音樂分享</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4 50%, #fbc2eb);
+            text-align: center;
+            padding: 50px;
+            color: white;
+            animation: colorShift 10s infinite alternate;
+        }
+
+        @keyframes colorShift {
+            0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4 50%, #fbc2eb); }
+            50% { background: linear-gradient(45deg, #a18cd1, #fbc2eb 50%, #fad0c4); }
+            100% { background: linear-gradient(45deg, #fbc2eb, #fad0c4 50%, #ff9a9e); }
+        }
+
+        h1 {
+            color: #ffeb3b;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            background: #ff4081;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.5em;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: #ffeb3b;
+            color: #ff4081;
+            transform: scale(1.1);
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        .home-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #72c8fa;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #5aabd8;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #72c8fa;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #5aabd8;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.htm" class="home-button">回首頁</a><br>
+    <div class="container">
+        <h1>🎶 我的音樂分享 🎶</h1>
+        <ul>
+            <pre>
+                <li><a href="https://youtu.be/ABpYcuIkh4A?si=TDA4Syo-fToAN_oa" target="_blank">Michael Gerow - Rewrite The Stars (Official Lyric Video)</a></li>
+                 <li><a href="https://youtu.be/ShZ978fBl6Y?si=LsXGYgrai59pj08Z" target="_blank">Calum Scott - You Are The Reason (Official Video)</a></li>
+                <li><a href="https://youtu.be/Rb_tqxQKSPM?si=e0i3nlTGhOfW3Qq8" target="_blank">Sasha Sloan - Older (Official Video)</a></li>
+            </pre>
+            
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>網際網路期中頁面</title>
+    <style>
+        /* 設定頁面基本樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('296879.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        /* 上方下拉選單容器 */
+        .dropdown-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* 下拉選單樣式 */
+        .dropdown-container select {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* 容器樣式 */
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 單個欄位的樣式 */
+        .column {
+            flex: 1;
+            min-width: 250px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .column:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .column h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .column img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .column p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 響應式設計：當螢幕寬度小於768px時，欄位改為垂直排列 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .column {
+                max-width: 100%;
+            }
+        }
+
+        /* 隱藏欄位 */
+        .hidden {
+            display: none;
+        }
+
+        /* 使 <a> 標籤塗滿整個欄位 */
+        .column a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 上方的下拉式選單 -->
+    <div class="dropdown-container">
+        <select id="columnSelector" onchange="showColumn()">
+            <option value="all">顯示所有</option>
+            <option value="1">Guitar Man</option>
+            <option value="2">photography portfolio</option>
+            <option value="3">首頁</option>
+        </select>
+    </div>
+
+    <!-- 容器 -->
+    <div class="container">
+        <!-- 欄位1 -->
+        <div class="column" id="column1">
+            <p>Guitar Man</p>
+            <img src="Gt01.jpg" alt="圖片2">
+            <h2>nothing</h2>
+            <p>點擊不會有連結</p>
+        </div>
+
+        <!-- 欄位2 -->
+        <div class="column" id="column2">
+            <a href="https://sites.google.com/view/chaomin-magicroad/%E9%A6%96%E9%A0%81">
+                <p>Sony A7M4</p>
+                <img src="DSC04485.jpg" alt="圖片1">
+                <h2>photography portfolio</h2>
+                <p>點擊可進入連結</p>
+            </a>
+        </div>
+
+        <!-- 欄位3 -->
+        <div class="column" id="column3">
+            <a href="index.htm">
+                <p>首頁</p>
+                <img src="DSC01241.jpg" alt="圖片3">
+                <h2>我的首頁</h2>
+                <p>點擊可進入連結</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showColumn() {
+            var selectedValue = document.getElementById("columnSelector").value;
+            var columns = document.querySelectorAll(".column");
+
+            if (selectedValue === "all") {
+                columns.forEach(function (column) {
+                    column.classList.remove("hidden");
+                });
+            } else {
+                columns.forEach(function (column) {
+                    if (column.id === "column" + selectedValue) {
+                        column.classList.remove("hidden");
+                    } else {
+                        column.classList.add("hidden");
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

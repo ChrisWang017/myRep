@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: url('296879.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #2d2d2d;
+    margin: 0;
+    padding: 40px;
+    line-height: 1.6;
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background-color: #ffffff;
+}
+
+h2 {
+    color: #110808;
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+
+.nav-item:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(145deg, #00ddff, #00ddff);
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content a {
+    display: block;
+    text-decoration: none;
+    color: #4967ff;
+}
+
+.icon {
+    font-size: 2em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #ffffff;
+    font-size: 0.95em;
+    margin: 10px 0 0;
+}

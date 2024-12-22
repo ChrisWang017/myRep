@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊管理系課程喜好調查問卷</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .home-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #72c8fa;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #5aabd8;
+        }
+        .hw-button {
+            position: fixed;
+            top: 60px;
+            left: 10px;
+            background-color: #72c8fa;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .hw-button:hover {
+            background-color: #5aabd8;
+        }
+        h1 {
+            text-align: center;
+            color: #030507;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        select, input[type="radio"], input[type="checkbox"], input[type="file"] {
+            cursor: pointer;
+        }
+        input[type="radio"]:hover, input[type="checkbox"]:hover {
+            transform: scale(1.1);
+            transition: 0.2s;
+        }
+        input[type="radio"]:checked, input[type="checkbox"]:checked {
+            accent-color: #72c8fa;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #72c8fa;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #5aabd8;
+        }
+        button:active {
+            background-color: #4893b6;
+        }
+        .result {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result p {
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.htm" class="home-button">回首頁</a><br>
+    <a href="wang1.htm" class="hw-button">作業</a><br>
+    <h1>資訊管理系課程喜好調查問卷</h1>
+
+    <form id="surveyForm" enctype="multipart/form-data">
+        <label for="gender">1. 性別:</label><br>
+        <input type="radio" id="male" name="gender" value="男"> 男<br>
+        <input type="radio" id="female" name="gender" value="女"> 女<br>
+        <input type="radio" id="other" name="gender" value="其他"> 其他<br>
+
+        <label for="age">2. 年齡:</label><br>
+        <select id="age" name="age">
+            <option value="18歲以下">18歲以下</option>
+            <option value="18-25歲">18-25歲</option>
+            <option value="26-35歲">26-35歲</option>
+            <option value="36-45歲">36-45歲</option>
+            <option value="46歲以上">46歲以上</option>
+        </select><br><br>
+
+        <label for="favoriteCourse">3. 你最喜歡的資訊管理系課程是什麼？</label><br>
+        <input type="radio" id="database" name="favoriteCourse" value="資料庫管理"> 資料庫管理<br>
+        <input type="radio" id="programming" name="favoriteCourse" value="程式設計"> 程式設計<br>
+        <input type="radio" id="dataAnalysis" name="favoriteCourse" value="資料分析"> 資料分析<br>
+        <input type="radio" id="projectManagement" name="favoriteCourse" value="專案管理"> 專案管理<br>
+        <input type="radio" id="networking" name="favoriteCourse" value="網路管理"> 網際網路<br><br>
+
+        <label for="difficulty">4. 你認為資訊管理系課程的難度如何？</label><br>
+        <input type="radio" id="easy" name="difficulty" value="簡單"> 簡單<br>
+        <input type="radio" id="moderate" name="difficulty" value="適中"> 適中<br>
+        <input type="radio" id="hard" name="difficulty" value="困難"> 困難<br><br>
+
+        <label for="improvement">5. 你認為哪些方面可以改進？（可複選）</label><br>
+        <input type="checkbox" id="content" name="improvement" value="課程內容"> 課程內容<br>
+        <input type="checkbox" id="teaching" name="improvement" value="教學方式"> 教學方式<br>
+        <input type="checkbox" id="resources" name="improvement" value="學習資源"> 學習資源<br>
+        <input type="checkbox" id="interaction" name="improvement" value="師生互動"> 師生互動<br><br>
+
+        <label for="fileUpload">6. 請上傳相關檔案（如有）：</label><br>
+        <input type="file" id="fileUpload" name="fileUpload"><br><br>
+
+        <button type="button" onclick="submitForm()">提交</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('surveyForm');
+            const resultDiv = document.getElementById('result');
+
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let age = document.getElementById('age').value;
+            let favoriteCourse = document.querySelector('input[name="favoriteCourse"]:checked');
+            let difficulty = document.querySelector('input[name="difficulty"]:checked');
+            let improvements = [];
+            document.querySelectorAll('input[name="improvement"]:checked').forEach((checkbox) => {
+                improvements.push(checkbox.value);
+            });
+            let fileUpload = document.getElementById('fileUpload').files[0];
+
+            if (!gender || !favoriteCourse || !difficulty) {
+                resultDiv.innerHTML = "<p>請回答所有必填問題。</p>";
+                return;
+            }
+
+            resultDiv.innerHTML = `
+                <h3>問卷結果</h3>
+                <p>性別: ${gender.value}</p>
+                <p>年齡: ${age}</p>
+                <p>最喜歡的課程: ${favoriteCourse.value}</p>
+                <p>課程難度: ${difficulty.value}</p>
+                <p>可改進的方面: ${improvements.join(', ') || '無'}</p>
+                <p>上傳的檔案: ${fileUpload ? fileUpload.name : '無'}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

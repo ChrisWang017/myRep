@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人資料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative; /* 使其相對定位 */
+            min-height: 100vh; /* 保證頁面至少滿足視窗高度 */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        img {
+            border-radius: 50%;
+            border: 3px solid #aacbee;
+        }
+        th {
+            background-color: #aacbee;
+            color: white;
+        }
+        .footer {
+            position: absolute; /* 絕對定位 */
+            bottom: 20px; /* 距離底部20px */
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            text-align: center;
+        }
+        .footer a {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #aacbee;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .footer a:hover {
+            background-color: #aacbee; /* 懸停時的顏色 */
+        }
+    </style>
+</head>
+<body>
+    <h1>個人資料</h1>
+    <table>
+        <tr>
+            <th>學號</th>
+            <td>3311331011</td>
+            <td colspan="2" rowspan="2"><img src="12.jpg" width="100" alt="Profile Picture"></td>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td>王朝民</td>
+        </tr>
+        <tr>
+            <th>興趣</th>
+            <td>攝影、吉他</td>
+        </tr>
+        <tr>
+            <th>專長</th>
+            <td>資訊設備維修工程師</td>
+        </tr>
+        <tr>
+            <th>經歷</th>
+            <td>台中科大資訊管理學系副學士學位</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <a href="wang1.htm">作業</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金字塔之眼 - Canvas版</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #101010;
+    }
+    canvas {
+      display: block;
+    }
+    .music-button {
+      position: absolute;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: goldenrod;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transform: translateX(-50%);
+    }
+    .music-button:hover {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="pyramidCanvas"></canvas>
+  <!-- 播放音樂按鍵 -->
+  <button class="music-button" id="playMusicButton">播放音樂</button>
+  
+  <!-- 音樂來源 -->
+  <audio id="backgroundMusic" loop>
+    <source src="coolbgm.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    const canvas = document.getElementById("pyramidCanvas");
+    const ctx = canvas.getContext("2d");
+    const playMusicButton = document.getElementById("playMusicButton");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const centerX = canvas.width / 2; // 畫布中心X軸
+    const centerY = canvas.height / 2; // 畫布中心Y軸
+    const pyramidHeight = 300; // 金字塔高度
+
+    const eyeWidth = 50; // 眼睛寬度 (縮小版)
+    const eyeHeight = 30; // 眼睛高度 (縮小版)
+    const pupilRadius = 8; // 瞳孔大小
+    const irisRadius = 15; // 眼珠大小
+
+    // 繪製金字塔
+    function drawPyramid() {
+      ctx.fillStyle = "goldenrod";
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY - pyramidHeight / 2); // 金字塔頂點
+      ctx.lineTo(centerX - pyramidHeight / 2, centerY + pyramidHeight / 2); // 左下角
+      ctx.lineTo(centerX + pyramidHeight / 2, centerY + pyramidHeight / 2); // 右下角
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+    }
+
+    // 繪製眼睛
+    function drawEye(mouseX, mouseY) {
+      const eyeX = centerX; // 金字塔中心X軸
+      const eyeY = centerY; // 金字塔中心Y軸
+
+      // 眼睛外框 (橢圓)
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.ellipse(eyeX, eyeY, eyeWidth, eyeHeight, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // 計算眼珠位置 (跟隨滑鼠)
+      const maxDistance = 10; // 眼珠最大偏移距離
+      const deltaX = mouseX - eyeX;
+      const deltaY = mouseY - eyeY;
+      const angle = Math.atan2(deltaY, deltaX);
+      const irisX = eyeX + Math.cos(angle) * Math.min(maxDistance, Math.abs(deltaX));
+      const irisY = eyeY + Math.sin(angle) * Math.min(maxDistance, Math.abs(deltaY));
+
+      // 眼珠 (藍色)
+      ctx.fillStyle = "#3498db";
+      ctx.beginPath();
+      ctx.arc(irisX, irisY, irisRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // 瞳孔 (黑色)
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.arc(irisX, irisY, pupilRadius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 動畫主函數
+    function animate(mouseX = centerX, mouseY = centerY) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPyramid();
+      drawEye(mouseX, mouseY);
+      requestAnimationFrame(() => animate(mouseX, mouseY));
+    }
+
+    // 滑鼠移動事件
+    let mouseX = centerX;
+    let mouseY = centerY;
+
+    canvas.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // 初始化動畫
+    animate();
+
+    // 音樂播放功能
+    const music = document.getElementById("backgroundMusic");
+    let isPlaying = false;
+
+    playMusicButton.addEventListener("click", () => {
+      if (!isPlaying) {
+        music.play();
+        playMusicButton.textContent = "暫停音樂";
+      } else {
+        music.pause();
+        playMusicButton.textContent = "播放音樂";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // 動態設定播放按鍵位置
+    function positionPlayButton() {
+      const buttonY = centerY + pyramidHeight / 2 + 20; // 金字塔底部 + 20px 間距
+      playMusicButton.style.left = `${centerX}px`;
+      playMusicButton.style.top = `${buttonY}px`;
+    }
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      positionPlayButton();
+    });
+
+    positionPlayButton(); // 初始設定按鍵位置
+  </script>
+</body>
+</html>

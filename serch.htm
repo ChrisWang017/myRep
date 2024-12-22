@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式搜尋引擎</title>
+    <style>
+        /* 全局樣式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: url('296879.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        /* 搜尋容器樣式 */
+        .search-container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* 標題樣式 */
+        .search-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        /* 搜尋框樣式 */
+        .search-box {
+            padding: 15px;
+            width: 100%;
+            font-size: 1.2em;
+            border: 1px solid #000000;
+            border-radius: 24px;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .search-box:focus {
+            box-shadow: 0 0 5px rgba(66, 133, 244, 1);
+            border-color: #4285f4;
+        }
+
+        /* 搜尋按鈕樣式 */
+        .search-button {
+            padding: 12px 30px;
+            font-size: 1.2em;
+            margin-top: 15px;
+            cursor: pointer;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 按鈕滑鼠懸停與按下效果 */
+        .search-button:hover {
+            background: #357ae8;
+        }
+
+        .search-button:active {
+            background: #2b6fb3;
+        }
+
+        /* 下方連結樣式 */
+        .news-link {
+            margin-top: 20px;
+            display: block;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 響應式樣式 */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 20px;
+            }
+
+            .search-container h1 {
+                font-size: 2em;
+            }
+
+            .search-box {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            .search-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-container {
+                padding: 15px;
+            }
+
+            .search-container h1 {
+                font-size: 1.5em;
+            }
+
+            .search-box {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            .search-button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h1>搜尋引擎</h1>
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q" class="search-box" placeholder="輸入查詢內容">
+            <br>
+            <button type="submit" class="search-button">搜尋</button>
+        </form>
+        <a href="https://news.google.com/" class="news-link">前往時事新聞</a>
+    </div>
+</body>
+</html>
